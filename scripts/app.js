@@ -34,26 +34,26 @@ service.getMatchedMenuItems = function(searchTerm){
 
 NarrowItDownController.$inject = ['MenuSearchService'];
 function NarrowItDownController(MenuSearchService) {
-  var ser = this;
+  var vm = this;
 
-  ser.searchTerm = "";
+  vm.searchTerm = "";
 
-  ser.narrowIt = function () {
-    if(ser.searchTerm === "") {
-      ser.items=[];
+  vm.narrowIt = function () {
+    if(vm.searchTerm === "") {
+      vm.items=[];
       return;
     }
-    var promise = MenuSearchService.getMatchedMenuItems(ser.searchTerm);
+    var promise = MenuSearchService.getMatchedMenuItems(vm.searchTerm);
     promise.then(function (response) {
-      ser.items = response;
+      vm.items = response;
     })
     .catch(function (error) {
       console.log(error);
     })
   }
 
-  ser.removeItem = function (index) {
-    ser.items.splice(index, 1);
+  vm.removeItem = function (index) {
+    vm.items.splice(index, 1);
   }
 }
 
